@@ -1,0 +1,3 @@
+gradlew assembleRelease--------------------打包所有配置的渠道包
+gradlew assemblemainappRelease-------------单独打包mainapp apk
+gradlew assemblemlsappRelease----------单独打包mlsapp  apk

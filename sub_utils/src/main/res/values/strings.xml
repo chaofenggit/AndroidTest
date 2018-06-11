@@ -1,0 +1,581 @@
+<resources>
+
+    <!-- APP string -->
+    <string name="app_name">CropImage</string>
+
+    // AltopayLoginActivity
+    <!--请输入账号-->
+    <string name="login_email_hint">Your phone number</string>
+    <!--请输入密码-->
+    <string name="login_password_hint">Log in password</string>
+    <!--账号和密码不能为空-->
+    <string name="login_empty_tip">Account or password cannot be empty</string>
+    <!--没有更多了-->
+    <string name="load_end">No more data</string>
+    <!--没有数据-->
+    <string name="load_no_data">No data</string>
+    <!--登录-->
+    <string name="login_btn">LOGIN</string>
+
+    <!--交易、退款列表、详情-->
+    <!--订单详情-->
+    <string name="title_trans_detail">Transaction Details</string>
+    <!--交易时间-->
+    <string name="trans_detail_trans_time">Transaction Time</string>
+    <!-- 找回密码 -->
+    <string name="find_password">Find Password</string>
+    <!--完成-->
+    <string name="done">Done</string>
+
+    <!--操作失败-->
+    <string name="show_qr_fail">Operation failed</string>
+
+    <!--请开启相机权限-->
+    <string name="open_app_setting_camera">Please turn on the camera permissions</string>
+    <!--请开启读写权限-->
+    <string name="open_app_setting_read_write">Please open the read write permissions</string>
+    <!--去设置-->
+    <string name="to_setting">OK</string>
+    <!-- Home -->
+    <!--Home页Pay-->
+    <string name="btn_home_pay">Pay</string>
+    <!--Home页Scan QR-->
+    <string name="btn_home_scan">Scan QR</string>
+    <!--Home页Receive-->
+    <string name="btn_home_receive">Receive</string>
+    <!--Home页Transfer-->
+    <string name="btn_home_transfer">Transfer</string>
+    <!--Pay页面跳转到Scan QR页面扫描二维码提示语 -->
+    <string name="tv_describe_pay">Please focus QRcode / Barcode \n automatic scan recognition</string>
+    <!--Scan QR 页面扫描二维码提示语 -->
+    <string name="tv_describe_scan">Please scan automatically within the frame</string>
+    <!-- Receive页面title-->
+    <string name="tv_collect_title">For individuals reception code</string>
+    <!-- Receive页面生成的二维码提示-->
+    <string name="tv_describe_collect">Use AltoPay Scan to pay me</string>
+    <!-- Receive保存二维码图片-->
+    <string name="save_image">Save image</string>
+    <!-- Pay页面title-->
+    <string name="tv_pay_title">pay Merchants</string>
+    <!-- Pay页面生成的二维码提示-->
+    <string name="tv_pay_qr">Pay to Merchant, Click to enlarge</string>
+    <!-- Pay页面生成的二维码提示支付方式-->
+    <string name="tv_payment_method">Payment method: Altocash</string>
+    <!-- Pay页面底部展示二维码选项-->
+    <string name="tv_payment_pay">Payment Code</string>
+    <!-- Pay页面底部展扫描二维码选项-->
+    <string name="tv_payment_scan">Scan QR Code</string>
+    <!-- 输入密码title-->
+    <string name="tv_enter_pwd_title">Enter Payment Password</string>
+    <!-- 扫描个人收款码后支付页面title-->
+    <string name="tv_payment">Payment</string>
+    <!-- 支付成功页面提示语-->
+    <string name="tv_pay_success">Payment Successful</string>
+    <!-- 支付方式-->
+    <string name="tv_pay_method">Payment Method</string>
+    <!-- 支付成功页面显示的收款人-->
+    <string name="tv_pay_recipient">Recipient</string>
+    <!-- 金额大小-->
+    <string name="tv_amount">Amount</string>
+    <!-- 转账添加备注-->
+    <string name="tv_add_remark">Add Remark</string>
+    <!-- 输入密码页展示的付款方式-->
+    <string name="tv_pay_mode">PaymentMode</string>
+    <!-- 付款方式e-->
+    <string name="tv_altocash">Altocash</string>
+    <!-- Receive生成带金额的二维码-->
+    <string name="set_number">Specify an amount</string>
+    <!-- 设置金额页面title-->
+    <string name="tv_set_amount_title">Setting amount</string>
+    <!-- 带二维码页面清除数据产生不带金额的二维码-->
+    <string name="clear_amount">Clear amount</string>
+    <!-- 底部Home按键-->
+    <string name="tv_home">Home</string>
+    <!-- 底部Life按键-->
+    <string name="tv_life">Life</string>
+    <!-- 底部ME按键-->
+    <string name="tv_me">ME</string>
+    <!-- 扫描结果页title-->
+    <string name="tv_scan_result_title">Scan Result</string>
+    <!-- 扫描结果页提示语-->
+    <string name="tv_scan_result_content">This content is not provided by ALTO</string>
+    <!-- 扫描结果页提示语-->
+    <string name="tv_scan_result_browse">If you need to browse, please copy the link and open it with the browser</string>
+    <!-- 扫描结果页复制链接-->
+    <string name="tv_cory">COPY</string>
+    <!-- Transfer页面查看给ALTOpayID 的交易记录-->
+    <string name="tv_altopay_id">TO AltoPay Account</string>
+    <!--Transfer页面查看给Phone No. 的交易记录-->
+    <string name="tv_phone_id">TO Phone NO.</string>
+    <!-- 最近的交易记录-->
+    <string name="tv_recent_transfers">Recent Transfers</string>
+    <!-- Transfer页面title-->
+    <string name="tv_transfer_title">Transfer</string>
+    <!-- 交易记录-->
+    <string name="transfer_records">Transfer records</string>
+    <!-- 交易设置-->
+    <string name="transfer_setting">Transfer setting</string>
+    <!-- 给ALTOpay 账户转账页面title-->
+    <string name="transfer_to_altopay_title">Transfer to Altopay Account</string>
+    <string name="next">Next</string>
+    <!-- 给ALTOpay 账户转账页面输入用户phone No.-->
+    <string name="altopay_account_phone_hint">Input Altopay account Phone NO.</string>
+
+
+    <!-- 获取手机联系人-->
+    <!-- 获取手机联系人页面title-->
+    <string name="contacts_title">Contacts</string>
+    <!-- 搜索联系人-->
+    <string name="search_hint">Search</string>
+    <!-- 已经注册-->
+    <string name="registered">Registered</string>
+
+
+    <!--交易完成页面title -->
+    <string name="transfer_result_title">Transfer Result</string>
+    <!--发红包页title-->
+    <string name="lucky_money_title">Sent Lucky AngPao</string>
+    <!--随机发送 -->
+    <string name="random_amount_each">Random amount each.</string>
+    <!--红包数量 -->
+    <string name="envelope_num">Number</string>
+    <!--红包数量不能超过10个-->
+    <string name="maxNum_envelopes">maximum of 10 AngPao</string>
+    <!--备注 红包备注默认语-->
+    <string name="remark_wishes">Remark:&#160;Best wishes</string>
+    <!--红包备注默认语-->
+    <string name="wishes">Best wishes</string>
+    <!--红包详情title -->
+    <string name="red_envelope">AngPao</string>
+    <!--Send -->
+    <string name="send">send</string>
+    <!--红包记录 -->
+    <string name="red_records">AngPao records</string>
+    <!--复制链接 -->
+    <string name="copy_link">Copy Link</string>
+    <!--发送红包 copy 链接成功 -->
+    <string name="copy_link_Successful">Copy Link Successful</string>
+    <!--收到的 -->
+    <string name="received">Received</string>
+    <!--发送红包记录item 中的红包描述-->
+    <string name="lucky_red_envelope">Luck AngPao</string>
+
+
+    <!--邀请朋友 -->
+    <!-- 邀请朋友页面的title-->
+    <string name="invite_friends_title">Invite Friends</string>
+    <!--给朋友的 -->
+    <string name="give_friends"><font color="#223F94">Give your Friends </font> <font color="#D93939"> Rp66.000</font></string>
+    <!--给自己的 -->
+    <string name="you_get"><font color="#223F94"> you get</font> <font color="#D93939"> Rp66.000</font></string>
+    <!--邀请朋友的tip -->
+    <string name="invite_friends_tip">When someone signs up for Altopay with your link,they will get Rp66.000 red envelopes int their account.Once they have finished a payment that is Rp166.000 or more,you will get Rp66.000 red envelopes in your account.</string>
+    <!--邀请朋友的tip -->
+    <string name="invite_rules">Detailed rules of activity</string>
+    <!--分享链接 -->
+    <string name="share_link">Share link</string>
+    <!-- 你邀请朋友获得的奖励-->
+    <string name="invite_reward">Your invited reward</string>
+    <!--奖励记录 -->
+    <string name="reward_records">reward records</string>
+    <!--总共获得的奖励 -->
+    <string name="total_reward">Total reward</string>
+    <!--邀请成功的数量 -->
+    <string name="invite_success_num">Number of successful invitations</string>
+    <!--人 -->
+    <string name="people">person</string>
+
+
+    <!--交易完成 -->
+    <!-- 选取相册图片-->
+    <string name="photo">Photo</string>
+    <!--未发现二维码 -->
+    <string name="scan_toast">Undiscovered two-dimensional code</string>
+    <!--识别失败 -->
+    <string name="scan_failed">Identification failure</string>
+    <!--保存成功 -->
+    <string name="save_image_success">Save success</string>
+    <!--保存失败，请稍后重试 -->
+    <string name="save_image_failed">Save failed, please try again later</string>
+    <!--支付成功，红包查询失败 -->
+    <string name="pay_success_search_red_failed">Payment success, AngPao query failed</string>
+    <!--获取转账对象信息失败！ -->
+    <string name="failed_get_transfer">Access to the transfer object information failed！</string>
+    <!--提交验证 -->
+    <string name="submit_verification">Submission verification...</string>
+    <!--没有登录余额展示 -->
+    <string name="balance_not_login">---</string>
+    <!--登录情况下不显示余额 -->
+    <string name="balance_not_show">******</string>
+    <!--红包记录页收到的红包个数 -->
+    <string name="red_envelope_received_num">You have received %1$d AngPao</string>
+    <!--红包记录页发送的红包个数 -->
+    <string name="red_envelope_send_num">You have send %1$d AngPao</string>
+    <!--year -->
+    <string name="year">year</string>
+    <!--红包详情页tip -->
+    <string name="red_detail_transferred_to">Have been transferred to</string>
+    <!--红包详情页tip -->
+    <string name="red_your_altopaycash">your Altocash</string>
+    <!--红包详情页tip -->
+    <string name="red_you_can_send_red_env">you can use to send AngPao</string>
+
+
+    <!--登录注册页面-->
+    <!--登录注册页面title-->
+    <string name="alto_pay">ALTO Pay</string>
+    <!--填写手机号码-->
+    <string name="sign_up_phone_et_hint">Your phone number</string>
+    <!--输入验证码-->
+    <string name="sign_up_verify_code_et_hint">Enter the code</string>
+    <!--获取验证码的提示语-->
+    <string name="sign_up_receive_code_tip">Please enter the code received by</string>
+    <!--验证密码发送剩余时间-->
+    <string name="sign_up_resend_code">Re-sent</string>
+    <!--密码规则-->
+    <string name="sign_up_psw_dt_hint">6-24 characters (not only numbers or letters)</string>
+    <!--设置登录密码-->
+    <string name="sign_up_psw_tip">Enter a new password  for your phone number</string>
+    <!--设置登录密码 后缀-->
+    <string name="sign_up_psw_tip_suffix">&#160;as login password</string>
+    <!--注册-->
+    <string name="sign_up">Sign up</string>
+    <!--输入验证码-->
+    <string name="sign_up_verify_code_title">Enter the code</string>
+    <!--设置登录密码-->
+    <string name="sign_up_psw_title">Set  Login  Password</string>
+    <!--确认按钮文字-->
+    <string name="sign_up_verify_code_btn_text">Confirm</string>
+    <!--保存按钮文字-->
+    <string name="save_btn_text">Save</string>
+    <!--注册页面 点击按钮提示手机号码不能为空-->
+    <string name="sign_up_phone_number_empty">Account cannot be empty</string>
+    <!--注册页面 点击按钮提示验证码不能为空-->
+    <string name="sign_up_verify_code_empty">Verify code cannot be empty</string>
+    <!--注册页面 点击按钮提示登录密码不能为空-->
+    <string name="sign_up_psw_empty">Passport cannot be empty</string>
+
+    <!--Me-->
+    <!--MeFragment 标题-->
+    <string name="title_me">Me</string>
+    <!--MeFragment 个人信息栏 未认证（理论上应该服务端返回===）-->
+    <string name="no_auth">Uncertified</string>
+    <!--MeFragment 银行卡按钮文字-->
+    <string name="bank_cards">BankCards</string>
+    <!--MeFragment 银行卡按钮文字右侧 提示文字（X张卡）-->
+    <string name="cards_num">%1$s cards</string>
+    <!--MeFragment 账单按钮文字-->
+    <string name="transactions">Transactions</string>
+    <!--MeFragment 设置按钮文字-->
+    <string name="setting">Setting</string>
+    <!--MeFragment 设置按钮右侧提示文字-->
+    <string name="setting_describe">payment and security</string>
+    <!--MeFragment 邀请朋友按钮文字-->
+    <string name="invite_friends">Invite friends</string>
+    <!--MeFragment 邀请朋友按钮右侧提示文字-->
+    <string name="invite_friends_describe">Receive prizes</string>
+    <!--MeFragment 发红包按钮文字-->
+    <string name="lucky_money">AngPao</string>
+    <!--MeFragment 发红包按钮右侧提示文字-->
+    <string name="lucky_money_describe">send Lucky AngPao</string>
+    <!--MeFragment 赠券按钮文字-->
+    <string name="coupons">Coupons</string>
+    <!--MeFragment 赠券按钮文字右侧提示文字-->
+    <string name="coupons_describe">2 coupons</string>
+    <!--Altocash-->
+    <!--AltocashActivity Alto现金-->
+    <string name="my_altocash">My Altocash</string>
+    <!--AltocashActivity Alto现金页 充值按钮-->
+    <string name="top_up">Top Up</string>
+    <!--AltocashActivity Alto现金页 提现按钮-->
+    <string name="withdraw">Withdraw</string>
+
+
+    <!--充值提现页面-->
+    <!--充值提现页面TopUpAndWithdrawActivity 充值界面标题-->
+    <string name="top_up_title">Altocash Top-up</string>
+    <!--充值提现页面TopUpAndWithdrawActivity 提现界面标题-->
+    <string name="withdraw_title">Altocash Withdraw</string>
+    <!--TopUpAndWithdrawResultActivity 充值结果界面标题-->
+    <string name="top_up_result_title">Top-up Result Detail</string>
+    <!--TopUpAndWithdrawResultActivity 提现结果界面标题-->
+    <string name="withdraw_result_title">Withdraw Result Detail</string>
+    <!--充值提现页面TopUpAndWithdrawActivity 提现界面 提现提示-->
+    <string name="withdraw_tip">You can withdraw to this card</string>
+    <!--TopUpAndWithdrawResultActivity 充值结果页 充值金额-->
+    <string name="top_up_amount">Top-up amount</string>
+    <!--TopUpAndWithdrawResultActivity 提现结果页 提现金额-->
+    <string name="withdraw_amount">Withdraw amount</string>
+    <!--BankCards-->
+    <!--绑卡列表页BankCardsActivity 标题-->
+    <string name="bank_cards_title">BankCards</string>
+    <!--绑卡列表页BankCardsActivity 添加一张新卡按钮文字-->
+    <string name="add_new_bank_cards">Add a new card +</string>
+    <!--Invite to receive prizes-->
+    <!--Message页面提示语 -->
+    <string name="invite_receive_prize_title">Invite to receive prizes</string>
+    <!--网络不可用 -->
+    <string name="net_work_unavailable">Sorry，Network is Unavailable</string>
+    <!--Message页面时间显示 -->
+    <string name="message_time">12-12-2017 10:12</string>
+    <!--Message页面提示语 -->
+    <string name="message_invite_to_have">Inviting a new person to have a prize,</string>
+    <!--Message页面提示语 -->
+    <string name="message_invite_get_billion">1 billion discount waiting for you.</string>
+    <!--Message邀请朋友详情 -->
+    <string name="message_details">Details</string>
+    <!--Message页面Promotions -->
+    <string name="promotions">Promotions</string>
+    <!--Message页面Notifications -->
+    <string name="notifications">Notifications</string>
+    <!--账号不能为空 -->
+    <string name="account_not_null">Account cannot be empty</string>
+    <!--数据解析异常 -->
+    <string name="data_parse_exception">Data parsing exception</string>
+    <!--金额展示 -->
+    <string name="text_rp">Rp.&#160;</string>
+    <!--Home页面余额展示 -->
+    <string name="home_alto_cash_rp">Altocash (Rp.)</string>
+    <!--Altopay 账户信息 -->
+    <string name="altopay_account">Altopay Account:&#160;&#160;</string>
+    <!--真实姓名 -->
+    <string name="transpay_real_name">Real Name %1$s</string>
+    <!--金额不能为空或者0 -->
+    <string name="amount_null">The amount can not be empty or 0</string>
+    <!--等额红包 -->
+    <string name="redpackage_type_equal_amount">Equal amount of AngPao</string>
+    <!--随机红包 -->
+    <string name="redpackage_type_random_amount">Lucky AngPao</string>
+    <!--用户取消-->
+    <string name="user_cancel">User cancelled</string>
+    <!--支付密码验证错误-->
+    <string name="pwd_check_error">Pay the password validation errors</string>
+    <!--红包个数不能为空-->
+    <string name="red_package_num_cannot_empty">AngPao number cannot be empty</string>
+    <!--首页: 更多-->
+    <string name="text_More">More</string>
+    <!--收到红包详情: 昵称前缀-->
+    <string name="text_From">From&#160;</string>
+    <!--引导开通支付密码title -->
+    <string name="open_altopay_title">Open AltoPay payment</string>
+    <!--引导开通支付密码message -->
+    <string name="open_altopay_message">In order for you to better user the function of the AltoWallet，please open the AltoPay payment function and improve the payment settings</string>
+    <!-- 设置支付密码title-->
+    <string name="set_paymne_pwd">Set Payment Password</string>
+    <!-- 输入支付密码提示-->
+    <string name="enter_pwd_tip_for">To ensure security,Enter a new password for</string>
+    <!--输入支付密码提示-->
+    <string name="enter_pwd_tip">as Payment password</string>
+    <!-- 再次输入密码-->
+    <string name="enter_pwd_again">Please enter your payment password again</string>
+    <!-- 两次输入密码不一致-->
+    <string name="password_different">New and confirmed passwords do not match</string>
+    <!-- 支付密码连续相同的数字时的提示提示-->
+    <string name="same_number">Do not use the same number consecutively, i.e. 111</string>
+    <!-- 支付密码连续数字时的提示提示-->
+    <string name="continuous_number">Do not use continuous numbers, i.e.123</string>
+    <!-- 支付密码设置成功-->
+    <string name="payment_pwd_set_success">Payment password set successful !</string>
+    <!-- 密码-->
+    <string name="password">Password</string>
+    <!-- Safetu protection-->
+    <string name="safety_protection">Safety Protection</string>
+    <!-- About-->
+    <string name="about">About</string>
+    <!-- log out-->
+    <string name="log_out">Log Out</string>
+    <!-- setting-->
+    <string name="title_setting">Settings</string>
+    <!-- 重置登录密码-->
+    <string name="reset_login_pwd">Reset Login Password</string>
+    <!-- 重置密码-->
+    <string name="reset_pwd">Reset Password</string>
+    <!-- 重置支付密码-->
+    <string name="reset_pay_pwd">Reset Payment Password</string>
+    <!-- 设置支付密码-->
+    <string name="set_pay_pwd">Set Payment Password</string>
+    <!-- 重置支付密码提示-->
+    <string name="enter_reset_pay_pwd_tip">Enter payment password to verify your identify</string>
+    <!-- 添加银行卡提示-->
+    <string name="add_bank_card">Please add your own card You can use this card to pay，no charges.</string>
+    <!-- 银行卡管理 -->
+    <string name="manage_bank_card_title">Manage Bankcard</string>
+    <!-- delete-->
+    <string name="delete">Delete</string>
+    <!-- 添加银行账户-->
+    <string name="add_bank_account_btn">Add bank account +</string>
+    <!-- 解绑验证密码-->
+    <string name="delete_bank_card">Delete Bank Card</string>
+    <!-- 绑卡验证密码-->
+    <string name="bind_bank_card">Bind Bank Card</string>
+    <!--请开启存储权限 -->
+    <string name="open_write_permission">Please open the storage permissions</string>
+    <!-- 提现引导开通支付密码提示-->
+    <string name="withdraw_open_pay_pwd">Please improve the payment settings，you could withdraw your balance.</string>
+    <!-- 解绑银行卡成功-->
+    <string name="unbind_card_success">Unbund Success</string>
+    <!-- 添加银行账户提示-->
+    <string name="add_bank_account">You can use this bank account to withdraw money</string>
+    <!-- 选择银行账户列表title-->
+    <string name="select_bank_account_title">Select Bank Account</string>
+    <!-- 添加银行账户验证密码title-->
+    <string name="add_bank_account_title">Add Bank account</string>
+    <!-- 银行卡快捷充值-->
+    <string name="bank_card_swift_payment">Bank Card Swift Payment</string>
+    <!-- 银行卡快捷充值描述-->
+    <string name="bank_card_swift_payment_des">Convenient, fast, secure online payment</string>
+    <!-- 绑定银行账户成功结果页提示-->
+    <string name="congratulations_tip">Congratulations!</string>
+    <!-- 绑定银行账户成功结果页提示-->
+    <string name="link_bank_account_success">&lt;font color="#000">Link bank account&lt;/font> &lt;font color="#D93939">%1$s&lt;/font> &lt;font color="#000">successful!&lt;/font></string>
+    <!-- 绑定银行账户结果页标题-->
+    <string name="link_bank_account_result_tip">Link Bank Account Result</string>
+    <!-- 支付结果查询三次之后，弹窗提示，点击取消，在结果页显示的文字-->
+    <string name="result_no_pay_result">Unable to query the result，you could check the result in your transactions</string>
+    <!-- 未查到（服务端）支付结果提示-->
+    <string name="result_search_empty">Unable to query the result. You could check the  result in your AngPao records，or you could try to continue to query.</string>
+    <!--登录或注册: 手机号校验错误提示-->
+    <string name="check_phone_number_error_tip_text">You have entered an invalid Indonesia number</string>
+    <!-- 绑定银行账户页面填写信息提示-->
+    <string name="enter_account_info">Please enter the receiving bank account information</string>
+    <!-- 绑定银行账户页面填写bank destination-->
+    <string name="enter_bank_destination">Bank Destination</string>
+    <!-- 绑定银行账户页面填写bank account No.-->
+    <string name="enter_bank_account_no">Bank account NO.</string>
+    <!-- 绑定银行账户页面填写bank account name-->
+    <string name="enter_bank_account_name">Bank account name</string>
+    <!-- 绑定银行账户页面select bank 提示-->
+    <string name="enter_select_bank">Select bank</string>
+    <!-- 注册页面文案提示-->
+    <string name="sign_tip_text_agree">Agree&#160;</string>
+    <!-- 注册页面文案提示-->
+    <string name="sign_tip_text">&lt;Altopay Service Agreement&gt;</string>
+    <!-- 提现输入金额页面提示-->
+    <string name="transfer_to_bank_account">Transfer to bank account</string>
+    <!-- 提现输入金额页面提示-->
+    <string name="withdraw_amount_tip">Withdraw Amount</string>
+    <!-- 提现输入金额页面提示服务费-->
+    <string name="withdraw_extra_service_fee">Extra deduct service fee Rp.</string>
+    <!-- 提现输入金额页面提示总支付金额-->
+    <string name="withdraw_total_deduction">Withdraw total deduction Rp.</string>
+    <!-- 提现输入金额超出余额-->
+    <string name="withdraw_out_balance">&lt;font color="#D93939">Withdraw total deduction Rp.%1$s exceeds QRindo balance.&lt;/font></string>
+    <!-- 提现余额低于费率-->
+    <string name="withdraw_not_enough">&lt;font color="#D93939">QRindo balance Rp.%1$s，not enough to pay service fee.&lt;/font></string>
+    <!-- 银行账户管理 -->
+    <string name="manage_bank_account_title">Manage Bank account</string>
+    <!-- 删除银行账户输入密码title-->
+    <string name="delete_bank_account_title">Delete Bank account</string>
+    <!-- 绑定银行账户选择银行-->
+    <string name="select_bank">SELECT BANK</string>
+    <!--找回登录密码标题-->
+    <string name="recover_psw_title">Reset Login Password</string>
+    <!--找回登录密码: 输入手机号-->
+    <string name="enter_phone_number_tips">Enter your mobile phone number</string>
+    <!--找回登录密码: 确认密码页面提示-->
+    <string name="enter_again_psw_tips">Please your Login Password enter again</string>
+    <!--金额-->
+    <string name="amount">Amount</string>
+    <!--选择充值方式title-->
+    <string name="select_topup_mode_title">Select a top-up method</string>
+    <!--注册-->
+    <string name="region">Region</string>
+    <!--国家印尼-->
+    <string name="indonesia">Indonesia</string>
+    <!--充值方式-Bank-->
+    <string name="bank">Bank</string>
+    <!--充值方式-Bank 描述-->
+    <string name="bank_des">ATM, Internet banking, Mobile banking</string>
+    <!--充值方式-Outlets-->
+    <string name="outlet">Outlets</string>
+    <!-- 提现默认提示-->
+    <string name="withdraw_balance_tip">Altocash Balance Rp.</string>
+    <!-- 提现全部提现提示-->
+    <string name="withdraw_all">Withdraw All</string>
+    <!--充值结果页面-支付方式-->
+    <string name="top_up_pay_method">Payment method</string>
+    <!-- 绑定账户列表title-->
+    <string name="bank_account">Bank account</string>
+    <!-- me页面绑定银行账户提示-->
+    <string name="me_bank_account">BankAccount</string>
+    <!--验证密码页面-提示内容-->
+    <string name="verify_code_tip_text">Please enter the Verification Code received by&#160;</string>
+    <!-- 提现结果页扣款总金额-->
+    <string name="withdraw_total">Withdraw total deduction</string>
+    <!-- 提现结果页实际到账金额-->
+    <string name="withdraw_amount_in">Withdraw amount</string>
+    <!-- 提现结果页服务费金额-->
+    <string name="withdraw_service_fee">Service fee</string>
+    <!--充值金额输入金额-提示内容-->
+    <string name="top_up_input_amount_tip_text">You could also top-up Rp.&#160;</string>
+    <!--充值金额输入金额-提示错误内容-->
+    <string name="top_up_input_amount_error_tip_text">Exceeds maximum rechargeable amount Rp.&#160;</string>
+
+
+
+
+
+    <!-- ........................................................................................................................-->
+    <!-- sub_gcm string -->
+    <!--您的设备不支持Google服务,将无法收到通知-->
+    <string name="google_service_not_support_tips">Your device does not support Google services, so it will not be notified</string>
+
+
+
+
+
+
+
+    <!-- .........................................................................................................................-->
+    <!-- sub_upgrade string -->
+    <!--下次再说-->
+    <string name="common_alert_dialog_cancel">Next Time</string>
+    <!--立即更新-->
+    <string name="common_alert_dialog_ensure">Update Now</string>
+    <!--下载进度-->
+    <string name="download_progress">Download: </string>
+
+
+
+
+
+    <!-- .......................................................................................................-->
+    <!-- sub_payment string -->
+    <!--选择支付方式title -->
+    <string name="select_payment_mode_title">Select Payment Mode</string>
+    <!-- 添加新卡-->
+    <string name="link_new_card_pay">Link a new card pay +</string>
+    <!-- 绑卡webView title-->
+    <string name="bank_card_web_title">Link Bank Card</string>
+    <!-- 银行卡余额不足code5012提示-->
+    <string name="bank_card_balance_not_enough">Insufficient amount</string>
+    <!-- 支付结果查询三次之后，支付中弹窗提示语-->
+    <string name="result_pay_ing_tip">Payment pending，unable to query the result. You could check result in your transactions，or you could try to continue to query.</string>
+
+
+
+
+    <!-- .......................................................................................................-->
+    <!-- alto_common String  -->
+    <!--正在加载...-->
+    <string name="common_loading">Loading...</string>
+    <!--网络连接失败,请检查网络-->
+    <string name="net_work_error">The network connection failed, please check the network</string>
+    <!-- 取消 -->
+    <string name="cancel">Cancel</string>
+    <!-- 确定 -->
+    <string name="confirm">Confirm</string>
+    <string name="tv_rp">Rp.</string>
+    <!--重试 -->
+    <string name="try_again">Try again</string>
+    <!-- 输入支付密码验证错误小于三次-->
+    <string name="reenter_pwd">Re-enter</string>
+    <!-- 忘记密码-->
+    <string name="forget_pwd">Forget Password</string>
+    <!-- 支付结果查询三次之后，网络连接失败弹窗提示语-->
+    <string name="result_net_error_tip">Network unavailable，unable to query the %1$s result. You could check the result in your transactions，or you could try to connect the network again.</string>
+    <!-- 支付文案-->
+    <string name="payment">payment</string>
+
+
+</resources>

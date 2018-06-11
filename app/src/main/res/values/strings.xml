@@ -1,0 +1,14 @@
+<resources>
+
+    <string name="IdDialog_B0">
+        &lt;font color="#FF000000">
+        &lt;b>Improve your informations&lt;/b>&lt;br/>
+        One-time setup, will only take you less than a minute!&lt;br/>&lt;br/>
+        &lt;b>Withdraw&lt;/b>&lt;br/>
+        Easily withdraw your GO-PAY balance to your bank account.&lt;br/>&lt;br/>
+        &lt;b>Transfer&lt;/b>&lt;br/>
+        Transfer your GO-PAY balance instantly and securely to your contacts.&lt;br/>&lt;br/>
+        &lt;b>Larger Wallet&lt;/b>&lt;br/>
+        Increase your GO-PAY balance from 1 million to 6 million.&lt;br/>&lt;br/>
+        &lt;/font></string>
+</resources>

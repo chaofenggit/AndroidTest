@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MainApp</string>
+    <string name="app_tip">我是主流程app</string>
+</resources>

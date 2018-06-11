@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="测试"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        android:orientation="horizontal">
+
+
+        <com.altopay.cropimage.wheelview.wheelview.WheelView
+            android:id="@+id/wheel1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            app:textColorCenter="@android:color/holo_blue_dark"
+            app:lineSpaceingDimens="10dp"
+            app:lineColor="@android:color/holo_blue_dark"
+            app:textSizeCenter="20dp"
+            app:textSizeOuter="16dp"
+            app:itemVisibleNum="7"
+            app:isLoop="false"
+            app:textColorOuter="@android:color/darker_gray"/>
+
+        <com.altopay.cropimage.wheelview.wheelview.WheelView
+            android:id="@+id/wheel2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            app:textColorCenter="@android:color/holo_blue_dark"
+            app:lineSpaceingDimens="10dp"
+            app:itemVisibleNum="7"
+            app:lineColor="@android:color/holo_blue_dark"
+            app:textSizeCenter="20dp"
+            app:textSizeOuter="16dp"
+            app:wheelGravity="left"
+            app:isLoop="false"
+            app:textColorOuter="@android:color/darker_gray"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,94 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.xiaoniu.buildvariantstest"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    signingConfigs{
+        release{
+            storeFile file("../xiaoniu.jks")
+            storePassword storepsw
+            keyAlias keyalias
+            keyPassword keypsw
+        }
+
+        debug{
+            storeFile file("../xiaoniu.jks")
+            storePassword storepsw
+            keyAlias keyalias
+            keyPassword keypsw
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true //混淆
+            zipAlignEnabled true // 对齐
+            debuggable false
+            jniDebuggable false
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            minifyEnabled false //混淆
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+
+        //多渠道打包配置
+        applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName  = "app_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+            }
+        }
+    }
+
+    flavorDimensions "xiaoniu"
+
+    productFlavors{
+        mainapp{
+            dimension "xiaoniu"
+            applicationId "com.xiaoniu.mainapp"
+        }
+        mlsapp{
+            dimension "xiaoniu"
+            applicationId "com.xiaoniu.mlsapp"
+        }
+    }
+
+    // 针对不同的客户,编译不同的目录,
+    sourceSets{
+//        mainapp.res.srcDirs=['src/main/res_main'] //指定编译的目录
+//        mlsapp.res.srcDirs=['src/main/res_mls']
+
+        mainapp.res.srcDirs += ['src/main/res_main','src/main/res_base'] //指定编译的目录
+        mlsapp.res.srcDirs += ['src/main/res_mls','src/main/res_base']
+    }
+
+
+}
+
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd-HH-mm")
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+//    implementation 'com.android.support:appcompat-v7:27.1.1'
+//    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
