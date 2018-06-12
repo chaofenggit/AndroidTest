@@ -9,3 +9,6 @@
 .externalNativeBuild
 *.properties
 xiaoniu.jks
+libs/
+/.idea/
+.idea
