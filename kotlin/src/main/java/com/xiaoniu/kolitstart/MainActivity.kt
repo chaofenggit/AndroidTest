@@ -1,49 +1,32 @@
 package com.xiaoniu.kolitstart
 
+import android.app.Activity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.view.View
-import kotlinx.android.synthetic.main.activity_main.*
+import android.util.Log
+import com.xiaoniu.kolitstart.music.MusicListFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
 
-     var TAG:String  = "121212"
-     var adapter:MusicAdapter?= null
-    private var musicList = ArrayList<String>()
+    var TAG:String  = "MainActivity"
+    val KEY_TYPE:String = "KEY_TYPE"
+    val musicListType = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        adapter = MusicAdapter(this, musicList)
-        recycler.layoutManager = LinearLayoutManager(this)
-        recycler.adapter =adapter
+        intiData()
     }
 
-    /**
-     * 刷新列表
-     */
-    fun onRefresh(view: View?){
-        for (i in 0..10){
-            musicList.add("" + i)
+    private fun intiData(){
+        val type = intent.getIntExtra(KEY_TYPE, 0)
+        Log.d(TAG, "type = " + type)
+        if (type == musicListType){
+            openMusicListFragment()
         }
-        adapter!!.notifyDataSetChanged()
-        querySong()
     }
 
-    fun querySong(){
-        val query = contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, arrayOf(MediaStore.Audio.Media.TITLE), null, null, null)
-
-        if(query.count > 0){
-            query.moveToFirst()
-            do {
-                musicList.add(query.getString(0))
-            } while (query.moveToNext())
-        }
-        query.close()
-        adapter!!.notifyDataSetChanged()
+    private fun openMusicListFragment() {
+        fragmentManager.beginTransaction().replace(R.id.fragment_container, MusicListFragment()).commit()
     }
 
 }
