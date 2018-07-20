@@ -48,7 +48,7 @@ public class BookFragment extends Fragment {
     private void initData(){
         bookList.clear();
         Book book = null;
-        for (int i= 0; i < 10; i++){
+        for (int i= 0; i < 4; i++){
             book = new Book("name" + i, "");
             bookList.add(book);
         }

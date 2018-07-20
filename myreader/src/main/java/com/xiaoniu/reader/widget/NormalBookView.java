@@ -2,8 +2,11 @@ package com.xiaoniu.reader.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -29,17 +32,71 @@ public class NormalBookView extends View {
         initView(context);
     }
 
+    private final static String DEFAULT_TEXT = "我";
+
     private Paint paint = null;
+    /**背景色*/
     private int bgColor;
+    /**中间的背景色*/
     private int contentBgColor;
+    /**边框颜色*/
     private int strokeColor;
+    /**边框宽度*/
+    private int strokeWidth = 2;
+    /**内容与边界的边距*/
+    private int contentMargin = 10;
+    /**文字与内容区域的边框的边距*/
+    private int textMargin = 0;
+    /**书名*/
+    private String bookName = "";
+    /***
+     * 字体大小
+     */
+    private int textSize = 25;
+    private int width;
+
     private void initView(Context context) {
         paint = new Paint();
+        paint.setTextSize(textSize);
+        paint.setAntiAlias(true);
         bgColor = context.getResources().getColor(R.color.C_FFFFFF);
         contentBgColor = context.getResources().getColor(R.color.C_F6F7F7);
         strokeColor = context.getResources().getColor(R.color.C_E6E6E6);
     }
 
+    /***
+     * 设置书名
+     * @param bookName
+     */
+    public void setBookName(String bookName) {
+
+        if (TextUtils.isEmpty(bookName)){
+            return;
+        }
+        Rect bound = new Rect();
+        paint.getTextBounds(DEFAULT_TEXT, 0, 1, bound);
+        textMargin = bound.height()/2 + 10;
+        int maxCount = (width - (strokeWidth + contentMargin + textMargin) * 2) / bound.width();
+        bookName = bookName.trim();
+        if (bookName.length() <= maxCount){
+            this.bookName = bookName;
+        }else {
+//           this.bookName = bookName.substring(0, maxCount);
+           this.bookName = bookName;
+        }
+        invalidate();
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int mode = MeasureSpec.getMode(widthMeasureSpec);
+        width = MeasureSpec.getSize(widthMeasureSpec);
+        if (mode == MeasureSpec.EXACTLY){
+            setMeasuredDimension(width, width*4/3);
+        }else {
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        }
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -48,15 +105,22 @@ public class NormalBookView extends View {
         canvas.drawColor(bgColor);
         //画边框
         paint.setColor(strokeColor);
-        paint.setStrokeWidth(2);
+        paint.setStrokeWidth(strokeWidth);
         paint.setStyle(Paint.Style.STROKE);
-        int width = getWidth();
+        width = getWidth();
         int height = getHeight();
         canvas.drawRect(0,0,width,height,paint);
-        //画小背景
+        //画内容背景
         paint.setColor(contentBgColor);
         paint.setStyle(Paint.Style.FILL);
-        canvas.drawRect(10,10,width - 10,height - 10,paint);
-
+        canvas.drawRect(contentMargin,contentMargin,width - contentMargin,height - contentMargin,paint);
+        if (TextUtils.isEmpty(bookName)){
+            return;
+        }
+        //画书名
+        paint.setColor(Color.BLACK);
+        int margin = strokeWidth + contentMargin + textMargin;
+        canvas.drawText(bookName, strokeWidth + contentMargin,margin, paint);
     }
+
 }

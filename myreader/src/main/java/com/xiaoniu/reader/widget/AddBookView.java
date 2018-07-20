@@ -31,14 +31,33 @@ public class AddBookView extends View {
     }
 
     private Paint paint = null;
+    /**背景色*/
     private int bgColor;
+    /**边框颜色*/
     private int strokeColor;
+    /**边框宽度*/
+    private int strokeWidth = 2;
+    /**加号的粗*/
+    private int lineWidth = 5;
+    /**加号的一半的长度*/
+    private int lineHalfLength = 15;
+
     private void initView(Context context) {
         paint = new Paint();
         bgColor = context.getResources().getColor(R.color.C_F6F7F7);
         strokeColor = context.getResources().getColor(R.color.C_E6E6E6);
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int mode = MeasureSpec.getMode(widthMeasureSpec);
+        if (mode == MeasureSpec.EXACTLY){
+            int width = MeasureSpec.getSize(widthMeasureSpec);
+            setMeasuredDimension(width, width*4/3);
+        }else {
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        }
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -47,7 +66,7 @@ public class AddBookView extends View {
         canvas.drawColor(bgColor);
         //画边框
         paint.setColor(strokeColor);
-        paint.setStrokeWidth(2);
+        paint.setStrokeWidth(strokeWidth);
         paint.setStyle(Paint.Style.STROKE);
         int width = getWidth();
         int height = getHeight();
@@ -55,8 +74,8 @@ public class AddBookView extends View {
         //画加号
         int centerX = width/2;
         int centerY = height/2;
-        paint.setStrokeWidth(5);
-        canvas.drawLine(centerX - 10, centerY, centerX + 10, centerY, paint);
-        canvas.drawLine(centerX, centerY - 10, centerX, centerY + 10, paint);
+        paint.setStrokeWidth(lineWidth);
+        canvas.drawLine(centerX - lineHalfLength, centerY, centerX + lineHalfLength, centerY, paint);
+        canvas.drawLine(centerX, centerY - lineHalfLength, centerX, centerY + lineHalfLength, paint);
     }
 }

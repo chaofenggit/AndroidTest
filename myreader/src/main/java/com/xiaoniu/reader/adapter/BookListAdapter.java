@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.xiaoniu.reader.R;
 import com.xiaoniu.reader.bean.Book;
+import com.xiaoniu.reader.widget.NormalBookView;
 
 import java.util.List;
 
@@ -33,16 +34,20 @@ public class BookListAdapter extends RecyclerView.Adapter{
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder viewHolder = null;
         if (viewType == TYPE_NORMAL){
-            viewHolder = new AddBookViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_book_item, parent, false));
+            viewHolder = new NormalBookViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_book_item, parent, false));
         }else if (viewType == TYPE_ADD){
-            viewHolder = new NormalBookViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_add_book_item, parent, false));
+            viewHolder = new AddBookViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_add_book_item, parent, false));
         }
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
+        if (holder instanceof NormalBookViewHolder){
+            NormalBookViewHolder normalBook = (NormalBookViewHolder) holder;
+            normalBook.bookView.setBookName(bookList.get(position).getName());
+        }
+        holder.itemView.setTag(position);
     }
 
     @Override
@@ -59,9 +64,10 @@ public class BookListAdapter extends RecyclerView.Adapter{
      * 正常书本holder
      */
     class NormalBookViewHolder extends RecyclerView.ViewHolder {
-
+        public NormalBookView bookView;
         public NormalBookViewHolder(View itemView) {
             super(itemView);
+            bookView = itemView.findViewById(R.id.bv_normal);
         }
     }
 
