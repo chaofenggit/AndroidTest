@@ -7,8 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
+/**
+ * @author xiaoniu
+ */
 public class MainActivity extends Activity implements View.OnClickListener {
 
     private TextView tv_tip;
