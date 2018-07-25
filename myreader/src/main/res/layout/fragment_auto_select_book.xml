@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_file_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/C_E6E6E6"/>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_select_all"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight="1"
+            android:text="@string/select_all"
+            android:textColor="@color/C_4A4A4A"
+            android:gravity="center"/>
+
+           <View
+               android:layout_width="@dimen/dp_1"
+               android:layout_height="match_parent"
+               android:background="@color/C_E6E6E6"/>
+
+        <TextView
+            android:id="@+id/tv_add_bookrack"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight="1"
+            android:text="@string/add_to_bookrack"
+            android:textColor="@color/C_EF4145"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -32,8 +32,6 @@ public class NormalBookView extends View {
         initView(context);
     }
 
-    private final static String DEFAULT_TEXT = "我";
-
     private Paint paint = null;
     /**背景色*/
     private int bgColor;
@@ -46,13 +44,19 @@ public class NormalBookView extends View {
     /**内容与边界的边距*/
     private int contentMargin = 10;
     /**文字与内容区域的边框的边距*/
-    private int textMargin = 0;
+    private int textMargin = 10;
+    /**文字与边框的边距*/
+    private int textBorderLength = 0;
+    /**文字高度*/
+    private int textHeight = 0;
+
     /**书名*/
-    private String bookName = "";
+    private String finalBookName = "";
     /***
      * 字体大小
      */
     private int textSize = 25;
+    /**控件宽度*/
     private int width;
 
     private void initView(Context context) {
@@ -68,22 +72,50 @@ public class NormalBookView extends View {
      * 设置书名
      * @param bookName
      */
-    public void setBookName(String bookName) {
-
+    public void setBookName(final String bookName) {
         if (TextUtils.isEmpty(bookName)){
+            this.finalBookName = bookName;
             return;
         }
-        Rect bound = new Rect();
-        paint.getTextBounds(DEFAULT_TEXT, 0, 1, bound);
-        textMargin = bound.height()/2 + 10;
-        int maxCount = (width - (strokeWidth + contentMargin + textMargin) * 2) / bound.width();
+        //列表重复使用空间，恢复之前的数据
+        textMargin = 10;
+        textBorderLength = 0;
+        textHeight = 0;
+
+        //防止width还有赋值就处理book name
+        post(new Runnable() {
+            @Override
+            public void run() {
+                dealBookName(bookName);
+            }
+        });
+    }
+
+    /***
+     * 处理书名
+     * @param bookName
+     */
+    private void dealBookName(String bookName){
         bookName = bookName.trim();
-        if (bookName.length() <= maxCount){
-            this.bookName = bookName;
-        }else {
-//           this.bookName = bookName.substring(0, maxCount);
-           this.bookName = bookName;
+
+        Rect bound = new Rect();
+        int end = bookName.length()-1;
+        paint.getTextBounds(bookName, 0, end, bound);
+        textHeight = bound.height();
+        textMargin = textHeight/2 + textMargin;
+
+        textBorderLength = strokeWidth + contentMargin + textMargin;
+        /**用于展示文字的最大宽度*/
+        int maxUsableWidth = width - textBorderLength * 2;
+        while (maxUsableWidth < bound.width()){
+            --end;
+            if (end <= 0){
+                break;
+            }
+            paint.getTextBounds(bookName, 0, end, bound);
         }
+
+        this.finalBookName = bookName.substring(0, end + 1);
         invalidate();
     }
 
@@ -114,13 +146,12 @@ public class NormalBookView extends View {
         paint.setColor(contentBgColor);
         paint.setStyle(Paint.Style.FILL);
         canvas.drawRect(contentMargin,contentMargin,width - contentMargin,height - contentMargin,paint);
-        if (TextUtils.isEmpty(bookName)){
+        if (TextUtils.isEmpty(finalBookName)){
             return;
         }
         //画书名
         paint.setColor(Color.BLACK);
-        int margin = strokeWidth + contentMargin + textMargin;
-        canvas.drawText(bookName, strokeWidth + contentMargin,margin, paint);
+        canvas.drawText(finalBookName, textBorderLength - textHeight/2, textBorderLength + textHeight/2, paint);
     }
 
 }

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.xiaoniu.reader.R;
 import com.xiaoniu.reader.bean.Book;
+import com.xiaoniu.reader.listener.OnItemLongClickListener;
 import com.xiaoniu.reader.widget.NormalBookView;
 
 import java.util.List;
@@ -17,26 +18,34 @@ import java.util.List;
  * @date 2018/7/20.
  */
 
-public class BookListAdapter extends RecyclerView.Adapter{
+public class BookListAdapter extends RecyclerView.Adapter implements View.OnLongClickListener {
 
     public static final int TYPE_ADD = -1;
     public static final int TYPE_NORMAL = 0;
 
     private List<Book> bookList;
+    private OnItemLongClickListener longClickListener;
 
     public BookListAdapter(List<Book> bookList) {
         this.bookList = bookList;
     }
 
+    public void setLongClickListener(OnItemLongClickListener longClickListener) {
+        this.longClickListener = longClickListener;
+    }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder viewHolder = null;
         if (viewType == TYPE_NORMAL){
-            viewHolder = new NormalBookViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_book_item, parent, false));
+            View normalView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_book_item, parent, false);
+            normalView.setOnLongClickListener(this);
+            viewHolder = new NormalBookViewHolder(normalView);
         }else if (viewType == TYPE_ADD){
-            viewHolder = new AddBookViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_add_book_item, parent, false));
+            View addView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_add_book_item, parent, false);
+            addView.setOnLongClickListener(this);
+            viewHolder = new AddBookViewHolder(addView);
         }
         return viewHolder;
     }
@@ -58,6 +67,14 @@ public class BookListAdapter extends RecyclerView.Adapter{
     @Override
     public int getItemCount() {
         return bookList == null ? 0:bookList.size();
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        if (longClickListener != null){
+            longClickListener.onItemLongClick((int)v.getTag());
+        }
+        return false;
     }
 
     /**

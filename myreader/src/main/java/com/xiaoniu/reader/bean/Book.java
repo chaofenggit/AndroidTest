@@ -10,6 +10,7 @@ public class Book {
 
     public static final int TYPE_ADD = -1;
     public static final int TYPE_NORMAL = 0;
+
     /**添加书本*/
     public static final  Book addBook = new Book("","", -1);
 
@@ -17,6 +18,10 @@ public class Book {
     private String path;
     /** 0 正常书本 -1 添加书本*/
     private int type;
+    private int format;
+
+    public Book() {
+    }
 
     public Book(String name, String path) {
         this.name = name;
@@ -57,5 +62,10 @@ public class Book {
     @Override
     public String toString() {
         return "[ name = " + name + ",path = " + path + ",type = " + type + "]";
+    }
+
+    public void clear(){
+        name = "";
+        path = "";
     }
 }

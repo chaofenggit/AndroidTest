@@ -1,5 +1,28 @@
 <resources>
     <string name="app_name">MyReader</string>
+    <!--main-->
     <string name="title_book">书籍</string>
     <string name="title_me">我的</string>
+    <!--book-->
+    <string name="from_wifi">wifi导入</string>
+    <string name="from_local">本地导入</string>
+    <string name="delete_book_msg">确定要删除%1$s吗?</string>
+    <string name="delete_success">删除成功</string>
+    <string name="delete_fail">删除失败</string>
+
+    <!--select book-->
+    <string name="title_select_book">导入图书</string>
+    <string name="auto_select_book">智能导书</string>
+    <string name="sd_card_select_book">手机目录</string>
+    <string name="select_all">全选</string>
+    <string name="add_to_bookrack">加入书架</string>
+    <string name="back_last_level">返回上一级</string>
+    <string name="file_sub_count">%1$d 项</string>
+
+
+    <!--dialog弹窗-->
+    <string name="dialog_ok">确定</string>
+    <string name="dialog_cancel">取消</string>
+    <string name="dialog_title">提示</string>
+
 </resources>

@@ -1,4 +1,4 @@
-package com.xiaoniu.reader;
+package com.xiaoniu.reader.activity;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -9,6 +9,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.xiaoniu.reader.R;
 import com.xiaoniu.reader.fragment.BookFragment;
 import com.xiaoniu.reader.fragment.MeFragment;
 
