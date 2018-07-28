@@ -6,4 +6,7 @@
     <dimen name="dp_10">10dp</dimen>
     <dimen name="dp_5">5dp</dimen>
     <dimen name="dp_1">1dp</dimen>
+
+
+    <dimen name="text_size_15">15sp</dimen>
 </resources>

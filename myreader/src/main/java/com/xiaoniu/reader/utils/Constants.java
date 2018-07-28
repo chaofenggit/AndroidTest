@@ -16,4 +16,6 @@ public class Constants {
 
     public static final String FORMAT_TXT = ".txt";
 
+    public static final String BOOK_PATH = "BOOK_PATH";
+
 }

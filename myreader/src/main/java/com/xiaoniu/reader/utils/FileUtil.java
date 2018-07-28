@@ -2,12 +2,18 @@ package com.xiaoniu.reader.utils;
 
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.text.TextUtils;
 
 import com.xiaoniu.reader.bean.MixFile;
 import com.xiaoniu.reader.bean.TxtFile;
 import com.xiaoniu.reader.listener.FileUtilListener;
+import com.xiaoniu.reader.listener.ReadFileListener;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,7 +97,7 @@ public class FileUtil {
         return file;
     }
 
- /**
+    /**
      * 获取文件下的子文件列表
      * @param parent
      */
@@ -112,6 +118,70 @@ public class FileUtil {
             list.add(mixFile);
         }
         return list;
+    }
+
+    /**
+     * 读取文件内容
+     * @param file
+     */
+    public void readFileContent(File file, ReadFileListener listener){
+        new ReadFileTask(file, listener).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    private class ReadFileTask extends AsyncTask<Void, Void, String>{
+
+        private ReadFileListener listener;
+        private File bookFile;
+
+        public ReadFileTask(File bookFile, ReadFileListener listener) {
+            this.bookFile = bookFile;
+            this.listener = listener;
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            BufferedReader reader = null;
+            try {
+                FileInputStream inputStream = new FileInputStream(bookFile);
+                BufferedInputStream bis = new BufferedInputStream(inputStream);
+                byte[] format = new byte[3];
+                bis.mark(4);
+                bis.read(format);
+                bis.reset();
+                if (format[0] == (byte) 0xEF && format[1] == (byte) 0xBB && format[2] == (byte) 0xBF) {
+                    reader = new BufferedReader(new InputStreamReader(bis, "utf-8"));
+                } else if (format[0] == (byte) 0xFF && format[1] == (byte) 0xFE) {
+                    reader = new BufferedReader( new InputStreamReader(bis, "unicode"));
+                } else if (format[0] == (byte) 0xFE && format[1] == (byte) 0xFF) {
+                    reader = new BufferedReader(new InputStreamReader(bis,  "utf-16be"));
+                } else if (format[0] == (byte) 0xFF && format[1] == (byte) 0xFF) {
+                    reader = new BufferedReader(new InputStreamReader(bis, "utf-16le"));
+                } else {
+                    reader = new BufferedReader(new InputStreamReader(bis, "GBK"));
+                }
+                StringBuilder sb = new StringBuilder();
+                String str = reader.readLine();
+                while (!TextUtils.isEmpty(str)){
+                    sb.append(str);
+                    str = reader.readLine();
+                }
+                inputStream.close();
+                bis.close();
+                reader.close();
+                return sb.toString();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if (listener != null){
+                listener.fileContent(s);
+            }
+        }
     }
 
 }

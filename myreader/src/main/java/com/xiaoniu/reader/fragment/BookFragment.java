@@ -17,15 +17,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.xiaoniu.reader.R;
-import com.xiaoniu.reader.ReaderApplication;
+import com.xiaoniu.reader.activity.ReadBookActivity;
 import com.xiaoniu.reader.activity.SelectBookActivity;
 import com.xiaoniu.reader.adapter.BookListAdapter;
 import com.xiaoniu.reader.bean.Book;
 import com.xiaoniu.reader.database.FileDBManager;
 import com.xiaoniu.reader.database.ReaderSqlHelper;
 import com.xiaoniu.reader.listener.BookChangeObserver;
-import com.xiaoniu.reader.listener.OnItemLongClickListener;
+import com.xiaoniu.reader.listener.BookListListener;
 import com.xiaoniu.reader.manager.BookChangeManager;
+import com.xiaoniu.reader.utils.Constants;
 import com.xiaoniu.reader.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -67,7 +68,7 @@ public class BookFragment extends Fragment implements BookChangeObserver{
         rv_book_list = mainView.findViewById(R.id.rv_book_list);
         rv_book_list.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         bookAdapter = new BookListAdapter(bookList);
-        bookAdapter.setLongClickListener(new LongClickListener());
+        bookAdapter.setBookListListener(new OnItemClickListener());
         rv_book_list.setAdapter(bookAdapter);
 
         BookChangeManager.addBookChangeObserver(this);
@@ -77,7 +78,7 @@ public class BookFragment extends Fragment implements BookChangeObserver{
         if (fileDBManager == null){
             fileDBManager = new FileDBManager(getActivity());
         }
-        Cursor cursor = fileDBManager.query(new String[]{ReaderSqlHelper.NAME, ReaderSqlHelper.PATH}, null, null, null, null, null, null);
+        Cursor cursor = fileDBManager.query(new String[]{ReaderSqlHelper.NAME, ReaderSqlHelper.PATH});
         if (cursor != null){
             bookList.clear();
             Book book = null;
@@ -109,26 +110,34 @@ public class BookFragment extends Fragment implements BookChangeObserver{
         initData();
     }
 
-    private class LongClickListener implements OnItemLongClickListener{
+    private class OnItemClickListener implements BookListListener{
 
         @Override
         public void onItemLongClick(int position) {
             showDialog(position);
         }
+
+        @Override
+        public void onItemClick(int position) {
+            Book book = bookList.get(position);
+            Intent intent = new Intent(getActivity(), ReadBookActivity.class);
+            intent.putExtra(Constants.BOOK_PATH, book.getPath());
+            startActivity(intent);
+        }
     }
 
 
     private void showDialog(int position){
-        final String bookName = bookList.get(position).getName();
+        final String bookPath = bookList.get(position).getPath();
         new AlertDialog
                 .Builder(getActivity())
                 .setTitle(R.string.dialog_title)
-                .setMessage(getString(R.string.delete_book_msg,bookName))
+                .setMessage(getString(R.string.delete_book_msg,bookPath))
                 .setCancelable(false)
                 .setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        deleteBookByName(bookName);
+                        deleteBook(bookPath);
                     }
                 })
                 .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
@@ -142,19 +151,24 @@ public class BookFragment extends Fragment implements BookChangeObserver{
 
     /**
      * 删除图书
-     * @param bookName
+     * @param bookPath
      */
-    private void deleteBookByName(String bookName) {
-        if (TextUtils.isEmpty(bookName)){
+    private void deleteBook(String bookPath) {
+        if (TextUtils.isEmpty(bookPath)){
             return;
         }
-
-        boolean delete = fileDBManager.delete(ReaderSqlHelper.NAME + "=?", new String[]{bookName});
+        boolean delete = fileDBManager.delete(ReaderSqlHelper.PATH, new String[]{bookPath});
         if (delete){
             ToastUtil.showToast(getActivity(), getString(R.string.delete_success));
-            initData();
+            BookChangeManager.notifyAllObserver();
         }else {
             ToastUtil.showToast(getActivity(), getString(R.string.delete_fail));
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        BookChangeManager.removeObserver(this);
     }
 }

@@ -1,5 +1,7 @@
 package com.xiaoniu.reader.bean;
 
+import com.xiaoniu.reader.utils.Constants;
+
 /**
  * @author xiaoniu
  * @date 2018/7/20.
@@ -14,23 +16,29 @@ public class Book {
     /**添加书本*/
     public static final  Book addBook = new Book("","", -1);
 
+    /**用于显示的名字*/
     private String name;
+    /**完整的名字*/
+    private String realName;
+    /**路径*/
     private String path;
     /** 0 正常书本 -1 添加书本*/
     private int type;
-    private int format;
 
+    private int format;
     public Book() {
     }
 
     public Book(String name, String path) {
-        this.name = name;
+        this.realName = name;
+        this.name = name.replace(Constants.FORMAT_TXT, "");
         this.path = path;
         this.type = 0;
     }
 
     public Book(String name, String path, int type) {
-        this.name = name;
+        this.realName = name;
+        this.name = name.replace(Constants.FORMAT_TXT, "");
         this.path = path;
         this.type = type;
     }
@@ -62,6 +70,14 @@ public class Book {
     @Override
     public String toString() {
         return "[ name = " + name + ",path = " + path + ",type = " + type + "]";
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     public void clear(){

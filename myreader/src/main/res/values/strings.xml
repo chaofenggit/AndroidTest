@@ -19,6 +19,8 @@
     <string name="back_last_level">返回上一级</string>
     <string name="file_sub_count">%1$d 项</string>
 
+    <!--toast-->
+    <string name="toast_book_path_error">找不到该书</string>
 
     <!--dialog弹窗-->
     <string name="dialog_ok">确定</string>

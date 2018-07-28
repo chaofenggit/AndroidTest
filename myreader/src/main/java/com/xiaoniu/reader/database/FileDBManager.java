@@ -45,12 +45,12 @@ public class FileDBManager {
      * @return
      */
     public boolean delete(String whereClause, String[] whereArgs){
-
-        int affected_rows = 0;//影响数据库的行数
+        /**影响数据库的行数*/
+        int affected_rows = 0;
         SQLiteDatabase database = null;
         try{
             database = helper.getWritableDatabase();
-            affected_rows = database.delete(ReaderSqlHelper.TXT_FILE_TABLE, whereClause, whereArgs);
+            affected_rows = database.delete(ReaderSqlHelper.TXT_FILE_TABLE, whereClause + "=?", whereArgs);
         }catch (Exception e){
             e.printStackTrace();
         }finally {
@@ -109,6 +109,14 @@ public class FileDBManager {
             e.printStackTrace();
         }
         return null;
+    }
+    /**
+     * 查找数据
+     * @param columns
+     * @return
+     */
+    public Cursor query(String[] columns){
+        return query(columns, null, null, null, null, null, null);
     }
 
 

@@ -88,6 +88,7 @@ public class AutoSelectBookFragment extends Fragment implements View.OnClickList
      * 获取txt文件列表
      */
     private void getTxtFileList(){
+        ll_bottom_area.setVisibility(View.GONE);
        if (fileUtil == null){
             fileUtil = new FileUtil();
             fileUtil.setCallBack(new FileUtilCallBack());
