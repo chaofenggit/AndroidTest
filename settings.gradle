@@ -1,1 +1,1 @@
-include ':app', ':sub_utils', ':buildvariantstest', ':androidunittest', ':takephoto', ':myreader','kotlin'
+include ':app', ':sub_utils', ':buildvariantstest', ':androidunittest', ':takephoto', ':myreader', ':nestedscrolldemo', ':hook','kotlin'
