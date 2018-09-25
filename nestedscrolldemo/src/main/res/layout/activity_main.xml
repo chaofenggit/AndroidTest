@@ -4,18 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-        <com.xiaoniu.nestedscrolldemo.nest.NestedParentLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="#00ff00">
-
-        <com.xiaoniu.nestedscrolldemo.nest.NestedChildView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="#0000ff"/>
-
-        </com.xiaoniu.nestedscrolldemo.nest.NestedParentLayout>
-
+       <!-- <fragment
+            android:id="@+id/fg_one"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.xiaoniu.nestedscrolldemo.fragments.FragmentOne"/>
+-->
+        <fragment
+            android:id="@+id/fg_two"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.xiaoniu.nestedscrolldemo.fragments.FragmentTwo"/>
 
 </LinearLayout>

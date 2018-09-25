@@ -40,12 +40,12 @@ public class MainActivity extends Activity {
     private void hookListener(View view) {
         try {
 
-            //执行getListenerInfo方法
+            //执行View#getListenerInfo方法
             Method getListenerInfo = View.class.getDeclaredMethod("getListenerInfo");
             getListenerInfo.setAccessible(true);
             Object listenerInfo = getListenerInfo.invoke(view);
 
-            //获取mOnClickListener字段
+            //获取ListenerInfo#mOnClickListener字段
             Class<?> info = Class.forName("android.view.View$ListenerInfo");
             Field mOnClickListener = info.getDeclaredField("mOnClickListener");
             mOnClickListener.setAccessible(true);

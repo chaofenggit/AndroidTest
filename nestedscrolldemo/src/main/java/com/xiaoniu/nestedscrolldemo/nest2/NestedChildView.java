@@ -1,4 +1,4 @@
-package com.xiaoniu.nestedscrolldemo.nest;
+package com.xiaoniu.nestedscrolldemo.nest2;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -20,14 +20,10 @@ import java.util.Arrays;
 public class NestedChildView extends LinearLayout implements NestedScrollingChild{
     private final static String TAG = "NestedChildView";
 
-    private float mLastX;//手指在屏幕上最后的x位置
-    private float mLastY;//手指在屏幕上最后的y位置
-
-    private float mDownX;//手指第一次落下时的x位置（忽略）
-    private float mDownY;//手指第一次落下时的y位置
-
     private int[] consumed = new int[2];//消耗的距离
     private int[] offsetInWindow = new int[2];//窗口偏移
+
+    private int showHeight;
 
     private NestedScrollingChildHelper mScrollingChildHelper;
 
@@ -42,44 +38,40 @@ public class NestedChildView extends LinearLayout implements NestedScrollingChil
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        float x = ev.getX();
-        float y = ev.getY();
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        /**显示在界面上的可见高度*/
+        showHeight = getMeasuredHeight();
+        /**测量总高度*/
+        heightMeasureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
 
+    private int lastY;
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
         int action = ev.getAction();
 
         switch (action) {
             case MotionEvent.ACTION_DOWN: {
+                lastY = (int) ev.getRawY();
 
-                mDownX = x;
-                mDownY = y;
-                mLastX = x;
-                mLastY = y;
                 //当开始滑动的时候，告诉父view
-                startNestedScroll(ViewCompat.SCROLL_AXIS_HORIZONTAL | ViewCompat.SCROLL_AXIS_VERTICAL);
+                startNestedScroll(ViewCompat.SCROLL_AXIS_VERTICAL);
                 break;
             }
 
             case MotionEvent.ACTION_MOVE: {
-                /*
-                mDownY:293.0
-                mDownX:215.0
-                 */
-
-                int dy = (int) (y - mDownY);
-                int dx = (int) (x - mDownX);
-
-                //分发触屏事件给父类处理
-                if (dispatchNestedPreScroll(dx, dy, consumed, offsetInWindow)) {
+                int y = (int) ev.getRawY();
+                int dy = y- lastY;
+                lastY = y;
+                if (dispatchNestedPreScroll(0, dy, consumed, offsetInWindow)) {
                     //减掉父类消耗的距离
-                    dx -= consumed[0];
                     dy -= consumed[1];
-                    Log.d(TAG, Arrays.toString(offsetInWindow));
                 }
-
-                offsetTopAndBottom(dy);
-                offsetLeftAndRight(dx);
-
+                if (dy != 0){
+                    scrollBy(0, -dy);
+                }
                 break;
             }
 
@@ -87,10 +79,24 @@ public class NestedChildView extends LinearLayout implements NestedScrollingChil
                 stopNestedScroll();
                 break;
             }
+            default:
+                break;
         }
-        mLastX = x;
-        mLastY = y;
         return true;
+    }
+
+    @Override
+    public void scrollTo(int x, int y) {
+
+        int maxDY = getMeasuredHeight() - showHeight;
+        Log.d("scrollTo", "maxDY = " + maxDY);
+        if (y > maxDY){
+            y = maxDY;
+        }
+        if (y < 0){
+            y = 0;
+        }
+        super.scrollTo(x, y);
     }
 
     /**

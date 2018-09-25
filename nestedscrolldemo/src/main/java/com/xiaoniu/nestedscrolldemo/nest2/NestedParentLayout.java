@@ -1,4 +1,4 @@
-package com.xiaoniu.nestedscrolldemo.nest;
+package com.xiaoniu.nestedscrolldemo.nest2;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -21,6 +21,10 @@ import java.util.Arrays;
 public class NestedParentLayout extends LinearLayout implements NestedScrollingParent{
     private static final String TAG = "NestedParentLayout";
 
+    private View childZero;
+    private View childTwo;
+    private int childOneHeight;
+
     private NestedScrollingParentHelper mScrollingParentHelper;
 
     public NestedParentLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
@@ -30,6 +34,22 @@ public class NestedParentLayout extends LinearLayout implements NestedScrollingP
 
     private void init() {
         mScrollingParentHelper = new NestedScrollingParentHelper(this);
+    }
+
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+
+        childZero = getChildAt(0);
+        childZero.post(new Runnable() {
+            @Override
+            public void run() {
+                childOneHeight = childZero.getHeight();
+            }
+        });
+
+        childTwo = getChildAt(2);
     }
 
     /**
@@ -42,8 +62,12 @@ public class NestedParentLayout extends LinearLayout implements NestedScrollingP
      */
     @Override
     public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes) {
-        Log.d(TAG, "onStartNestedScroll() called with: " + "child = [" + child + "], target = [" + target + "], nestedScrollAxes = [" + nestedScrollAxes + "]");
-        return true;
+        if (target instanceof NestedChildView){
+            Log.d(TAG, "onStartNestedScroll() called with: " + "child = [" + child + "], target = [" + target + "], nestedScrollAxes = [" + nestedScrollAxes + "]");
+            return true;
+        }else {
+            return false;
+        }
     }
 
     /**
@@ -103,37 +127,9 @@ public class NestedParentLayout extends LinearLayout implements NestedScrollingP
     @Override
     public void onNestedPreScroll(View target, int dx, int dy, int[] consumed) {
         Log.d(TAG, "onNestedPreScroll() called with: " + "dx = [" + dx + "], dy = [" + dy + "], consumed = [" + Arrays.toString(consumed) + "]");
-        final View child = target;
-        if (dx > 0) {
-            if (child.getRight() + dx > getWidth()) {
-                dx = child.getRight() + dx - getWidth();//多出来的
-                offsetLeftAndRight(dx);
-                consumed[0] += dx;//父亲消耗
-            }
-
-        } else {
-            if (child.getLeft() + dx < 0) {
-                dx = dx + child.getLeft();
-                offsetLeftAndRight(dx);
-                Log.d(TAG, "dx:" + dx);
-                consumed[0] += dx;//父亲消耗
-            }
-
-        }
-
-        if (dy > 0) {
-            if (child.getBottom() + dy > getHeight()) {
-                dy = child.getBottom() + dy - getHeight();
-                offsetTopAndBottom(dy);
-                consumed[1] += dy;
-            }
-        } else {
-            if (child.getTop() + dy < 0) {
-                dy = dy + child.getTop();
-                offsetTopAndBottom(dy);
-                Log.d(TAG, "dy:" + dy);
-                consumed[1] += dy;//父亲消耗
-            }
+        if (showImg(dy) || hideImg(dy)){
+            scrollBy(0, -dy);
+            consumed[1] = dy;
         }
     }
 
@@ -162,5 +158,45 @@ public class NestedParentLayout extends LinearLayout implements NestedScrollingP
     @Override
     public boolean onNestedPreFling(View target, float velocityX, float velocityY) {
         return false;
+    }
+
+    //下拉的时候是否要向下滚动以显示图片
+    public boolean showImg(int dy) {
+        if (dy > 0) {
+            if (getScrollY() > 0 && childTwo.getScrollY() == 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    //上拉的时候，是否要向上滚动，隐藏图片
+    public boolean hideImg(int dy) {
+        if (dy < 0) {
+            if (getScrollY() < childOneHeight) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isScroll(int dy){
+        if (dy != 0 && getScrollY() >= 0 && getScrollY() <= childOneHeight){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void scrollTo(int x, int y) {
+        if (y < 0){
+            y = 0;
+        }
+        if (y > childOneHeight){
+            y = childOneHeight;
+        }
+        Log.d("scrollTo", "Y = " + y);
+        super.scrollTo(x, y);
     }
 }
