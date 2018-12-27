@@ -1,0 +1,75 @@
+//groovy 基础
+
+//字符串
+task strTask<<{
+
+    def str1 = 'string'
+    def str2 = "string"
+    println('单引号字符串的类型' + str1.getClass().name)
+    println('双引号字符串的类型' + str2.getClass().name)
+
+    def name = '小牛冲冲冲'
+    println('name is ${name}')
+    println("name is ${name}")//双引号才可以使用${}
+}
+
+//数组
+task listTest<<{
+    def numList = [1,2,3,4,5,6]
+
+    println('numLlist type = ' + numList.getClass().name)
+    println("numList[0] = ${numList[0]}")
+    println("numList[0..3] = ${numList[0..3]}")
+    println("numList[-1] = ${numList[-1]}")//最后一个
+
+    numList.each {
+        println("numList contain ${it}")
+    }
+}
+
+//Map
+task mapTest<<{
+    def myMap = ['name':'xiaoniu','height':'180']
+    println("myMap type = " + myMap.getClass().name)
+    println("myMap.name = ${myMap.name}, myMap.height = ${myMap['height']}")
+
+    myMap.each {
+        println("key = ${it.key}, value = ${it.value}")
+    }
+}
+
+//方法
+
+task methodTest<<{
+    methodDef(1,2)
+    methodDef 2,3
+}
+
+def methodDef(int a, int b){
+    println "a + b = ${a + b}"
+}
+
+//闭包测试
+task closureTest<<{
+    closureMethod {
+        println it
+    }
+
+    closureMethod2{ key,value ->
+        println "key = ${key}, value = ${value}"
+    }
+}
+
+def closureMethod(closure){
+    for (int i in 1..10) {
+        closure(i)
+    }
+}
+
+def closureMethod2(closure){
+    def map1 = ['name':'xiaoniu','age':'18']
+    map1.each {
+        closure(it.key, it.value)
+    }
+}
+

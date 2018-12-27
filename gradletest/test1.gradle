@@ -1,0 +1,9 @@
+//gradle 写个hello world
+task hello{
+    group BasePlugin.BUILD_GROUP
+    doLast{
+       println 'Hello World'
+    }
+
+}
+
