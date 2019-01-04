@@ -1,1 +1,1 @@
-include ':app', ':sub_utils', ':buildvariantstest', ':androidunittest', ':takephoto', ':myreader', ':nestedscrolldemo', ':hook', ':gradletest', ':statusbar', ':viewswitch', ':viewswitch', ':appicon', ':textswitcher', ':keyboardscrolllayout','kotlin'
+include ':app', ':sub_utils', ':buildvariantstest', ':androidunittest', ':takephoto', ':myreader', ':nestedscrolldemo', ':hook', ':gradletest', ':statusbar', ':viewswitch', ':viewswitch', ':appicon', ':textswitcher', ':keyboardscrolllayout', ':keybordview','kotlin'

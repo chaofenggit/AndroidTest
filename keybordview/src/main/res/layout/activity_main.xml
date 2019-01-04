@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_tip"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:background="@color/colorAccent"/>
+
+    <EditText
+        android:id="@+id/et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="输入文字"/>
+
+
+    <com.xiaoniu.keybordview.keyboard.DigitKeyBoardView
+        android:id="@+id/key_board"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:keyPreviewLayout="@null"
+        android:background="@color/E6E6E9"
+        android:keyBackground="@drawable/key_bg"
+        android:keyTextColor="@color/colorAccent"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:shadowRadius="0"/>
+
+</LinearLayout>

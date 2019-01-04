@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">KeyBordView</string>
+    <string name="app_tip">自定义键盘</string>
+</resources>
