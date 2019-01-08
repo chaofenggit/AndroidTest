@@ -28,8 +28,6 @@
         android:background="@color/E6E6E9"
         android:keyBackground="@drawable/key_bg"
         android:keyTextColor="@color/colorAccent"
-        android:paddingTop="1dp"
-        android:paddingBottom="1dp"
         android:shadowRadius="0"/>
 
 </LinearLayout>
