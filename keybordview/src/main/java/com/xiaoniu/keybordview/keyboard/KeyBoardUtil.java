@@ -1,12 +1,18 @@
 package com.xiaoniu.keybordview.keyboard;
 
+import android.annotation.SuppressLint;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
+import android.text.InputType;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 import com.xiaoniu.keybordview.R;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -27,6 +33,7 @@ public class KeyBoardUtil {
     }
 
     private void init() {
+        onHiddenSystemKeyboard(editText);
         //初始化按键
         final Keyboard keyboard = new Keyboard(keyboardView.getContext(), R.xml.keyboard_number2);
         //键盘设置按键
@@ -95,5 +102,20 @@ public class KeyBoardUtil {
         });
     }
 
+    private void onHiddenSystemKeyboard(EditText edit) {
+        if (android.os.Build.VERSION.SDK_INT <= 10) {// 4.0以下
+            edit.setInputType(InputType.TYPE_NULL);
+        } else {
+            try {
+                Class<EditText> cls = EditText.class;
+                Method setShowSoftInputOnFocus = cls.getMethod(
+                        "setShowSoftInputOnFocus", boolean.class);
+                setShowSoftInputOnFocus.setAccessible(false);
+                setShowSoftInputOnFocus.invoke(edit, false);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }

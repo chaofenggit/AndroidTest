@@ -36,15 +36,15 @@ public class CustomTextSwitcher extends View {
     /**
      * 上一次设置的文字
      */
-    private String preTextStr;
+    private String preText;
     /**
      * 当前设置的文字
      */
-    private String currentStr;
+    private String currentText;
     /**
      * 文字滚动的距离
      */
-    private float move;
+    private float moveDistance;
 
     public CustomTextSwitcher(Context context) {
         super(context);
@@ -65,16 +65,15 @@ public class CustomTextSwitcher extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         viewHeight = getMeasuredHeight();
-        Log.d(TAG, "onMeasure height:" + viewHeight);
     }
 
 
     private void init(Context context){
         //初始化画笔
         paint = new Paint();
-        paint.setTextSize(60);
+        paint.setTextSize(dip2px(context, 24));
         paint.setAntiAlias(true);
-        paint.setColor(context.getResources().getColor(R.color.colorBlack));
+        paint.setColor(context.getResources().getColor(R.color.CC_1A1B24));
         //计算文字高度
         Rect rect = new Rect();
         paint.getTextBounds(defaultStr, 0, defaultStr.length(), rect);
@@ -90,24 +89,10 @@ public class CustomTextSwitcher extends View {
             return;
         }
         //更新文字
-        preTextStr = currentStr;
-        this.currentStr = text;
+        preText = currentText;
+        currentText = text;
 
-        //计算当前文字和上次文字的宽度最大值
-        Rect rect = new Rect();
-        paint.getTextBounds(currentStr, 0, currentStr.length(), rect);
-        int currentTextWidth = rect.width();
-
-        if (!TextUtils.isEmpty(preTextStr)){
-            paint.getTextBounds(preTextStr, 0, preTextStr.length(), rect);
-        }
-        int preTextWidth = rect.width();
-
-        //刷新控件宽度
-        ViewGroup.LayoutParams layoutParams = getLayoutParams();
-        layoutParams.width = Math.max(currentTextWidth, preTextWidth) + 5;
-        setLayoutParams(layoutParams);
-
+        refreshViewWidth();
         startAnimations();
     }
 
@@ -116,16 +101,18 @@ public class CustomTextSwitcher extends View {
      */
     private void startAnimations() {
         //最大值根据文字居中到消失的距离计算得来的
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, viewHeight / 2.0f + textHeight / 2.0f);
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, (viewHeight + textHeight) / 2.0f);
         valueAnimator.setDuration(500);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                    move = (float) animation.getAnimatedValue();
-                    if (animation.getAnimatedFraction() == 1){
-                        preTextStr = "";
-                    }
-                    postInvalidate();
+                moveDistance = (float) animation.getAnimatedValue();
+                if (animation.getAnimatedFraction() == 1){
+                    preText = "";
+                    //刷新控件宽度
+                    refreshViewWidth();
+                }
+                postInvalidate();
             }
         });
         valueAnimator.start();
@@ -135,11 +122,47 @@ public class CustomTextSwitcher extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if (!TextUtils.isEmpty(preTextStr)){
-            canvas.drawText(preTextStr, 0, viewHeight/2.0f  + textHeight/2.0f  - move, paint);
+        if (!TextUtils.isEmpty(preText)){
+            canvas.drawText(preText, 0, viewHeight/2.0f  + textHeight/2.0f  - moveDistance, paint);
         }
-        if (!TextUtils.isEmpty(currentStr)){
-            canvas.drawText(currentStr, 0, viewHeight  + textHeight - move , paint);
+        if (!TextUtils.isEmpty(currentText)){
+            canvas.drawText(currentText, 0, viewHeight  + textHeight - moveDistance, paint);
         }
+    }
+
+    /**
+     * 刷新控件的宽度
+     * @return
+     */
+    private void refreshViewWidth( ){
+        Rect rect = new Rect();
+        paint.getTextBounds(currentText, 0, currentText.length(), rect);
+        int currentTextWidth = rect.width();
+
+        if (!TextUtils.isEmpty(preText)){
+            paint.getTextBounds(preText, 0, preText.length(), rect);
+        }
+        int preTextWidth = rect.width();
+
+        //刷新控件宽度
+        ViewGroup.LayoutParams layoutParams = getLayoutParams();
+        layoutParams.width = Math.max(currentTextWidth, preTextWidth) + 5;
+        setLayoutParams(layoutParams);
+    }
+
+    /**
+     * 获取当前正在展示的文字
+     * @return
+     */
+    public String getCurrentText() {
+        return currentText;
+    }
+
+    /**
+     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+     */
+    public int dip2px(Context context, float dpValue) {
+        float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
     }
 }
