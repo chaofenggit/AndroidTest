@@ -7,9 +7,10 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.altopay.lib.utils.ToolUtils;
 
 /**
  * @author xiaoniu
@@ -46,6 +47,19 @@ public class CustomTextSwitcher extends View {
      */
     private float moveDistance;
 
+    /**
+     * 文字baseLine与要显示的位置之间的Y距离
+     */
+    private float baseLineDistance;
+    /**
+     * 之前文字的初始基线
+     */
+    private float preTextInitBaseLine;
+    /**
+     * 当前文字的初始基线
+     */
+    private float currentTextInitBaseLine;
+
     public CustomTextSwitcher(Context context) {
         super(context);
         init(context);
@@ -65,19 +79,23 @@ public class CustomTextSwitcher extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         viewHeight = getMeasuredHeight();
+        preTextInitBaseLine = viewHeight/2.0f  + baseLineDistance;
+        currentTextInitBaseLine = viewHeight + textHeight/2.0f  + baseLineDistance;
     }
 
 
     private void init(Context context){
         //初始化画笔
         paint = new Paint();
-        paint.setTextSize(dip2px(context, 24));
+        paint.setTextSize(ToolUtils.dip2px(context, 24));
         paint.setAntiAlias(true);
         paint.setColor(context.getResources().getColor(R.color.CC_1A1B24));
         //计算文字高度
         Rect rect = new Rect();
         paint.getTextBounds(defaultStr, 0, defaultStr.length(), rect);
         textHeight = rect.height();
+        //文字baseLine与要显示的位置之间的Y距离
+        baseLineDistance = ToolUtils.getBaseLineDistance(paint);
     }
 
     /**
@@ -123,10 +141,10 @@ public class CustomTextSwitcher extends View {
         super.onDraw(canvas);
 
         if (!TextUtils.isEmpty(preText)){
-            canvas.drawText(preText, 0, viewHeight/2.0f  + textHeight/2.0f  - moveDistance, paint);
+            canvas.drawText(preText, 0, preTextInitBaseLine  - moveDistance, paint);
         }
         if (!TextUtils.isEmpty(currentText)){
-            canvas.drawText(currentText, 0, viewHeight  + textHeight - moveDistance, paint);
+            canvas.drawText(currentText, 0, currentTextInitBaseLine - moveDistance, paint);
         }
     }
 
@@ -146,23 +164,7 @@ public class CustomTextSwitcher extends View {
 
         //刷新控件宽度
         ViewGroup.LayoutParams layoutParams = getLayoutParams();
-        layoutParams.width = Math.max(currentTextWidth, preTextWidth) + 5;
+        layoutParams.width = Math.max(currentTextWidth, preTextWidth) + 10;
         setLayoutParams(layoutParams);
-    }
-
-    /**
-     * 获取当前正在展示的文字
-     * @return
-     */
-    public String getCurrentText() {
-        return currentText;
-    }
-
-    /**
-     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
-     */
-    public int dip2px(Context context, float dpValue) {
-        float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
     }
 }

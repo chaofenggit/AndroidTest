@@ -10,7 +10,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.altopay.lib.utils.Constants;
-import com.altopay.lib.utils.logutil.LogUtil;
+import com.altopay.lib.utils.LogUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -115,7 +115,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler{
             }
         } catch (Exception e){
             e.printStackTrace();
-            LogUtil.e(TAG, e);
+            LogUtil.e(TAG, e.getMessage());
         }
         Field[] fields = Build.class.getDeclaredFields();
         for (Field field : fields) {
@@ -124,7 +124,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler{
                 infos.put(field.getName(), field.get(null).toString());
             } catch (Exception e) {
                 e.printStackTrace();
-                LogUtil.e(TAG, e);
+                LogUtil.e(TAG, e.getMessage());
             }
         }
     }

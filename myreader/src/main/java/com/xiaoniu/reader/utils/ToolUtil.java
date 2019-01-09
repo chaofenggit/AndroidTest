@@ -1,5 +1,8 @@
 package com.xiaoniu.reader.utils;
 
+import android.content.Context;
+import android.graphics.Paint;
+
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -49,4 +52,5 @@ public class ToolUtil {
     public static String formatDecimal(float data){
         return new DecimalFormat("0.00").format(data);
     }
+
 }

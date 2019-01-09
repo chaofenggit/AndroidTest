@@ -9,7 +9,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * Created by kaylau on 2016/12/14.
+ *
  */
 
 public class ToastUtil {

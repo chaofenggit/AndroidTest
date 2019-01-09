@@ -31,4 +31,12 @@
         android:text="新文字"
         android:onClick="switchText"/>
 
+
+    <!--测试文字居中-->
+    <com.xiaoniu.textswitcher.test.TextViewCenter
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"/>
+
 </LinearLayout>
