@@ -8,14 +8,12 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.media.ExifInterface;
 import android.net.Uri;
-import android.os.Environment;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
-import com.altopay.lib.utils.ToastUtil;
-import com.altopay.lib.utils.logutil.LogUtil;
+
+import com.altopay.lib.utils.LogUtil;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;

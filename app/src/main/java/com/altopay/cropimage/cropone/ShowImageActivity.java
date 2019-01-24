@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.altopay.cropimage.R;
-import com.altopay.lib.utils.logutil.LogUtil;
+import com.altopay.lib.utils.LogUtil;
 
 public class ShowImageActivity extends Activity {
     private static final String TAG = "ShowImageActivity";

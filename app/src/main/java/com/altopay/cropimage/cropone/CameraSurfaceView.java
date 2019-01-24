@@ -11,7 +11,7 @@ import android.view.SurfaceView;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
-import com.altopay.lib.utils.logutil.LogUtil;
+import com.altopay.lib.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;

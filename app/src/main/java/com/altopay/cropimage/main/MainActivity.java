@@ -3,14 +3,13 @@ package com.altopay.cropimage.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
 import com.altopay.cropimage.R;
 import com.altopay.cropimage.cropone.CaptureActivity;
-import com.altopay.lib.utils.logutil.LogUtil;
+import com.altopay.lib.utils.LogUtil;
 
 public class MainActivity extends Activity {
 

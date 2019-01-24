@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.altopay.cropimage.R;
+import com.altopay.lib.utils.LogUtil;
 import com.altopay.lib.utils.ToastUtil;
-import com.altopay.lib.utils.logutil.LogUtil;
 
 import java.lang.reflect.Field;
 

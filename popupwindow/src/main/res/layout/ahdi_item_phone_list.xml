@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:background="@drawable/ahdi_selector_bg_phone_item">
+
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:textColor="#3E4050"
+        android:gravity="center_vertical"
+        android:textSize="15sp"
+        android:layout_marginLeft="45dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e6e6e9"/>
+
+</RelativeLayout>
