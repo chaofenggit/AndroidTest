@@ -54,9 +54,11 @@ public class MainActivity extends Activity {
         phoneList.add("812345671");
         phoneList.add("812345672");
         phoneList.add("812345673");
-        phoneList.add("812345673");
-        phoneList.add("812345673");
-        phoneList.add("812345673");
+        phoneList.add("812345674");
+        phoneList.add("812345675");
+        phoneList.add("812345676");
+        phoneList.add("812345677");
+        phoneList.add("812345678");
         popUpWindow.setData(phoneList);
         popUpWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
