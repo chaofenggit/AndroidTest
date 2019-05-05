@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ShareElementDrager</string>
+    <string name="transition_name">share_element</string>
+</resources>
