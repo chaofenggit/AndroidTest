@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+       <!-- <fragment
+            android:id="@+id/fg_one"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.xiaoniu.nestedscrolldemo.fragments.FragmentOne"/>
+-->
+     <!--   <fragment
+            android:id="@+id/fg_two"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.xiaoniu.nestedscrolldemo.fragments.FragmentTwo"/>  -->
+
+    <fragment
+            android:id="@+id/fg_three"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.xiaoniu.nestedscrolldemo.fragments.FragmentThree"/>
+
+</LinearLayout>
